@@ -82,6 +82,3 @@ htmlcov/
 *.temp
 temp/
 tmp/
-
-# data
-data/data_source
