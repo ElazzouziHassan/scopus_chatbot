@@ -122,7 +122,7 @@ class ArxivChatbot:
 def main():
     """Main Streamlit application"""
     st.set_page_config(
-        page_title="arXiv Scientific Papers Chatbot",
+        page_title="Master 2IAD | arXiv Scientific Papers Chatbot",
         page_icon="🔬",
         layout="wide",
         initial_sidebar_state="expanded"
@@ -133,7 +133,7 @@ def main():
     st.markdown("Ask me anything about scientific papers from arXiv!")
     
     # Sidebar configuration
-    st.sidebar.header("⚙️ Configuration")
+    st.sidebar.header("Configuration")
     
     # Index directory selection
     default_index_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'search_index')
@@ -233,13 +233,13 @@ def main():
                                         st.link_button("📄 View PDF", paper['pdf_url'])
                                     
                                     if paper.get('abstract_url'):
-                                        st.link_button("🔗 arXiv Page", paper['abstract_url'])
+                                        st.link_button("arXiv Page", paper['abstract_url'])
             
             # Add assistant response to history
             st.session_state.messages.append({"role": "assistant", "content": response})
     
     with col2:
-        st.header("📊 Dataset Statistics")
+        st.header("Dataset Statistics")
         
         # Get statistics
         stats = chatbot.get_paper_statistics()
