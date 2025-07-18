@@ -1,19 +1,19 @@
-# 🚀 Chatbot de Recherche Sémantique arXiv
+# Chatbot de Recherche Sémantique arXiv
 
-## 📌 Aperçu
+## Aperçu
 
 Le **Chatbot de Recherche Sémantique arXiv** est une application web intelligente qui permet d'explorer et de rechercher dans une vaste collection d'articles scientifiques provenant d'arXiv. Utilisant des techniques avancées de traitement du langage naturel et de recherche sémantique, ce projet offre une interface conversationnelle intuitive pour découvrir des recherches pertinentes.
 
 Ce projet résout le problème de la surcharge d'information dans la littérature scientifique en permettant aux chercheurs, étudiants et professionnels de poser des questions en langage naturel et d'obtenir des réponses synthétisées basées sur des milliers d'articles scientifiques. L'application combine la puissance des embeddings sémantiques, de l'indexation vectorielle FAISS et d'une interface utilisateur moderne construite avec Streamlit.
 
-### 🎯 Fonctionnalités Clés
+### Fonctionnalités Clés
 - **Recherche Sémantique Avancée** : Recherche par similarité de sens plutôt que par mots-clés
 - **Interface Conversationnelle** : Chat interactif avec réponses détaillées et contextualisées
 - **Synthèse Intelligente** : Génération automatique de réponses complètes basées sur multiple articles
 - **Visualisations Interactives** : Statistiques et analyses graphiques du dataset
 - **Déploiement Cloud** : Application accessible via Streamlit Cloud
 
-## 🧠 Architecture du Système
+## Architecture du Système
 
 Le système suit une architecture modulaire en plusieurs étapes :
 
@@ -34,7 +34,7 @@ Le système suit une architecture modulaire en plusieurs étapes :
                        └──────────────────┘    └─────────────────┘
 ```
 
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 Scoupus-chatbot/
@@ -57,7 +57,7 @@ Scoupus-chatbot/
 └── 📄 README.md                  # Documentation du projet
 ```
 
-## ⚙️ Installation et Configuration
+## Installation et Configuration
 
 ### Prérequis
 - **Python 3.8+** (recommandé : Python 3.9 ou 3.10)
@@ -95,7 +95,7 @@ Scoupus-chatbot/
   # Éditer le fichier .env avec vos paramètres
 ```
 
-## 🧬 Construction de l'Index Sémantique
+## Construction de l'Index Sémantique
 
 ### Étape 1 : Extraction des Données
 
@@ -142,7 +142,7 @@ Scoupus-chatbot/
 - `all-mpnet-base-v2` : Meilleure qualité, plus lent (768 dimensions)
 - `all-roberta-large-v1` : Qualité optimale, très lent (1024 dimensions)
 
-## 💬 Lancement du Chatbot
+## Lancement du Chatbot
 
 ### Exécution Locale
 
@@ -172,7 +172,7 @@ Scoupus-chatbot/
   "Recherches de Geoffrey Hinton sur les réseaux de neurones"
 ```
 
-## ☁️ Déploiement sur Streamlit Cloud
+## Déploiement sur Streamlit Cloud
 
 ### Étapes de Déploiement
 
@@ -198,10 +198,10 @@ Scoupus-chatbot/
   DEFAULT_MODEL = "all-MiniLM-L6-v2"
 ```
 
-### 🔗 Application Déployée
+### Application Déployée
 [Lien vers l'application déployée](https://votre-app.streamlit.app)
 
-## 🧪 Tests et Validation
+## Tests et Validation
 
 ### Tests de Performance
 
@@ -220,7 +220,7 @@ Scoupus-chatbot/
 - **Couverture** : Plus de 30,000 articles scientifiques indexés
 - **Satisfaction Utilisateur** : Interface intuitive et réponses pertinentes
 
-## 📊 Métriques de Performance
+## Métriques de Performance
 
 | Métrique | Valeur | Description |
 |----------|--------|-------------|
@@ -230,7 +230,7 @@ Scoupus-chatbot/
 | **Couverture Temporelle** | 2010-2024 | Période couverte par les articles |
 | **Domaines** | 20+ | Nombre de domaines scientifiques |
 
-## 🔄 Mise à Jour de l'Index
+## Mise à Jour de l'Index
 
 ### Actualisation Complète
 
@@ -251,7 +251,7 @@ Scoupus-chatbot/
     --output data/data_source/new_papers.json
 ```
 
-## 🔐 Sécurité et Confidentialité
+## Sécurité et Confidentialité
 
 ### Gestion des Secrets
 
@@ -265,7 +265,7 @@ Scoupus-chatbot/
 - Utiliser des environnements virtuels isolés
 - Respecter les limites de taux de l'API arXiv (3 requêtes/seconde)
 
-## 🔧 Dépannage
+## Dépannage
 
 ### Erreurs Communes
 
@@ -294,7 +294,7 @@ Scoupus-chatbot/
   # Attendre 3 secondes entre les requêtes
 ```
 
-## 🛤️ Travaux Futurs / Feuille de Route
+## Travaux Futurs / Feuille de Route
 
 ### Améliorations Prévues
 
@@ -313,7 +313,7 @@ Scoupus-chatbot/
 - **Éducation** : Support pédagogique pour étudiants
 - **R&D Industrielle** : Exploration de nouvelles technologies
 
-## 🧑‍💻 Contributeurs
+## Contributeurs
 
 ### Équipe Principale
 
@@ -341,7 +341,7 @@ Nous accueillons les contributions de la communauté ! Voici comment contribuer 
 - 🌐 Traductions
 - 🎨 Améliorations de l'interface
 
-## 📜 Licence
+## Licence
 
 Ce projet est sous licence **MIT License**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
@@ -361,7 +361,7 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 ```
 
-## 📚 Références et Remerciements
+## Références et Remerciements
 
 ### Technologies Utilisées
 
@@ -386,7 +386,7 @@ copies or substantial portions of the Software.
 
 ---
 
-## 🚀 Démarrage Rapide
+## Démarrage Rapide
 
 ```bash
   # Installation rapide
@@ -404,7 +404,7 @@ copies or substantial portions of the Software.
   streamlit run app/pro_chatbot.py
 ```
 
-**🎉 Votre chatbot de recherche sémantique arXiv est maintenant prêt !**
+** Votre chatbot de recherche sémantique arXiv est maintenant prêt ! 🎉**
 
 ---
 
