@@ -19,23 +19,17 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # Virtual Environment
 venv/
 env/
 ENV/
-env.bak/
-venv.bak/
 
 # Environment Variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-# Data Files
+# Data Files (trop volumineux pour Git)
 data/data_source/*.json
 data/data_source/*.csv
 data/processed/*.json
@@ -46,39 +40,14 @@ data/search_index/
 *.pkl
 *.pickle
 
-# Logs
-*.log
-logs/
+# Streamlit
+.streamlit/secrets.toml
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
 # OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-
-# Jupyter Notebooks
-.ipynb_checkpoints
-
-# Streamlit
-.streamlit/
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Temporary files
-*.tmp
-*.temp
-temp/
-tmp/
