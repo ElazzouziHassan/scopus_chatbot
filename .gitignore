@@ -51,3 +51,13 @@ data/search_index/
 
 # OS
 Thumbs.db
+# Large data files (use GitHub Releases instead)
+data/search_index/papers_data.json
+data/search_index/embeddings.npy
+data/search_index/faiss_index.bin
+data/data_source/*.json
+data/processed/*.json
+
+# Keep small files
+!data/sample_papers.json
+!data/search_index/metadata.json
