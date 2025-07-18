@@ -317,7 +317,7 @@ Scoupus-chatbot/
 
 ### Équipe Principale
 
-- **Groupe 2IAD (H. Elazzouzi, K. Ettalbi & O. Rochdi** 
+- **Groupe 2IAD (H. Elazzouzi, K. Ettalbi & O. Rochdi)** 
   - Développeurs Principal
   - Architecture du système
   - Implémentation des algorithmes de recherche
