@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "arXiv Semantic Search Chatbot (scopus_chatbot)"
+authors:
+  - family-names: "El Azzouzi"
+    given-names: "Hassan"
+  - family-names: "Ettalbi"
+    given-names: "Kabira"
+  - family-names: "Rochdi"
+    given-names: "Oumayma"
+date-released: 2026-08-20
+version: "1.0.0"
+license: MIT
+repository-code: "https://github.com/ElazzouziHassan/scopus_chatbot"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22033431"
+    description: "Zenodo record for the associated research paper"
+preferred-citation:
+  type: generic
+  title: "Development of an Intelligent Conversational Assistant for Semantic Exploration of Scientific Articles"
+  authors:
+    - family-names: "El Azzouzi"
+      given-names: "Hassan"
+    - family-names: "Ettalbi"
+      given-names: "Kabira"
+    - family-names: "Rochdi"
+      given-names: "Oumayma"
+  year: 2026
+  month: 8
+  publisher:
+    name: "Zenodo"
+  doi: "10.5281/zenodo.22033431"
+  url: "https://doi.org/10.5281/zenodo.22033431"
