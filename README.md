@@ -1,350 +1,385 @@
-# Chatbot de Recherche Sémantique arXiv
+# arXiv Semantic Search Chatbot
 
-## Aperçu
+## Overview
 
-Le **Chatbot de Recherche Sémantique arXiv** est une application web intelligente qui permet d'explorer et de rechercher dans une vaste collection d'articles scientifiques provenant d'arXiv. Utilisant des techniques avancées de traitement du langage naturel et de recherche sémantique, ce projet offre une interface conversationnelle intuitive pour découvrir des recherches pertinentes.
+The **arXiv Semantic Search Chatbot** is an intelligent web application that lets you explore and search a large collection of scientific papers from arXiv. Using advanced natural language processing and semantic search techniques, this project provides an intuitive conversational interface for discovering relevant research.
 
-Ce projet résout le problème de la surcharge d'information dans la littérature scientifique en permettant aux chercheurs, étudiants et professionnels de poser des questions en langage naturel et d'obtenir des réponses synthétisées basées sur des milliers d'articles scientifiques. L'application combine la puissance des embeddings sémantiques, de l'indexation vectorielle FAISS et d'une interface utilisateur moderne construite avec Streamlit.
+It addresses the problem of information overload in scientific literature by letting researchers, students, and professionals ask questions in natural language and get synthesized answers drawn from thousands of scientific articles. The application combines semantic embeddings, FAISS vector indexing, and a modern user interface built with Streamlit.
 
-### Fonctionnalités Clés
-- **Recherche Sémantique Avancée** : Recherche par similarité de sens plutôt que par mots-clés
-- **Interface Conversationnelle** : Chat interactif avec réponses détaillées et contextualisées
-- **Synthèse Intelligente** : Génération automatique de réponses complètes basées sur multiple articles
-- **Visualisations Interactives** : Statistiques et analyses graphiques du dataset
-- **Déploiement Cloud** : Application accessible via Streamlit Cloud
+This project is described in the accompanying research paper: *"Development of an Intelligent Conversational Assistant for Semantic Exploration of Scientific Articles"* — see [Citation](#citation) below.
 
-## Architecture du Système
+### Key Features
 
-Le système suit une architecture modulaire en plusieurs étapes :
+- **Advanced Semantic Search** — search by meaning rather than exact keywords
+- **Conversational Interface** — interactive chat with detailed, contextualized answers
+- **Intelligent Synthesis** — automatic generation of comprehensive answers drawn from multiple articles
+- **Interactive Visualizations** — statistics and graphical analysis of the dataset
+- **Cloud Deployment** — accessible via Streamlit Cloud
+
+## System Architecture
+
+The system follows a modular, multi-stage architecture:
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   arXiv API     │───▶│  Extraction &    │───▶│   Nettoyage     │
-│                 │    │  Collecte        │    │   des Données   │
+│   arXiv API      │───▶│  Extraction &    │───▶│   Data          │
+│                   │    │  Collection      │    │   Cleaning      │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                                                          │
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│ Interface Web   │◀───│  Recherche       │◀───│  Génération     │
-│ (Streamlit)     │    │  Sémantique      │    │  d'Embeddings   │
+│ Web Interface     │◀───│  Semantic        │◀───│  Embedding      │
+│ (Streamlit)       │    │  Search          │    │  Generation     │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                                 │                        │
                        ┌──────────────────┐    ┌─────────────────┐
-                       │   Index FAISS    │◀───│  Sentence       │
-                       │                  │    │  Transformers   │
+                       │   FAISS Index     │◀───│  Sentence       │
+                       │                    │    │  Transformers   │
                        └──────────────────┘    └─────────────────┘
 ```
 
-## Structure du Projet
+## Project Structure
 
 ```
-Scoupus-chatbot/
-├── 📂 app/                       # Applications Streamlit
-│   ├── beta_hatbot.py            # Application principale
-│   └── pro_chatbot.py            # Version professionnelle
-├── 📂 data/                      # Données et scripts
-│   ├── 📂 scripts/               # Scripts de traitement
-│   │   ├── arxiv_extractor.py    # Extraction des données arXiv
-│   │   ├── data_cleaner.py       # Nettoyage des données
-│   │   └── semantic_indexer.py   # Création de l'index sémantique
-│   ├── 📂 data_source/           # Données brutes extraites
-│   ├── 📂 processed/             # Données nettoyées
-│   └── 📂 search_index/          # Index de recherche FAISS
+scopus_chatbot/
+├── 📂 app/                       # Streamlit applications
+│   ├── beta_chatbot.py           # Main application
+│   └── pro_chatbot.py            # Production-ready version
+├── 📂 data/                      # Data and scripts
+│   ├── 📂 scripts/               # Processing scripts
+│   │   ├── arxiv_extractor.py    # arXiv data extraction
+│   │   ├── data_cleaner.py       # Data cleaning
+│   │   └── semantic_indexer.py   # Semantic index creation
+│   ├── 📂 data_source/           # Raw extracted data
+│   ├── 📂 processed/             # Cleaned data
+│   └── 📂 search_index/          # FAISS search index
 ├── 📂 config/                    # Configuration
-│   └── config.py                 # Paramètres de configuration
-├── 📄 requirements.txt           # Dépendances Python
-├── 📄 .env                       # Variables d'environnement
-├── 📄 .gitignore                 # Fichiers à ignorer par Git
-└── 📄 README.md                  # Documentation du projet
+│   └── config.py                 # Configuration parameters
+├── 📄 requirements.txt           # Python dependencies
+├── 📄 .env                       # Environment variables
+├── 📄 .gitignore                 # Git-ignored files
+├── 📄 CITATION.cff               # Citation metadata
+└── 📄 README.md                  # Project documentation
 ```
 
-## Installation et Configuration
+## Installation and Setup
 
-### Prérequis
-- **Python 3.8+** (recommandé : Python 3.9 ou 3.10)
-- **Git** pour cloner le repository
-- **Environnement virtuel** (venv ou conda)
-- **8GB+ RAM** recommandés pour le traitement des embeddings
+### Prerequisites
+
+- **Python 3.8+** (recommended: Python 3.9 or 3.10)
+- **Git** to clone the repository
+- **Virtual environment** (venv or conda)
+- **8GB+ RAM** recommended for embedding processing
 
 ### Installation
 
-1. **Cloner le repository**
-```bash
-  git clone https://github.com/ElazzouziHassan/scopus_chatbot.git
-  cd scopus_chatbot
-```
-
-2. **Créer un environnement virtuel**
-```bash
-  # Avec venv
-  python -m venv venv
-  source venv/bin/activate  # Sur Windows: venv\Scripts\activate
-
-  # Ou avec conda
-  conda create -n arxiv-chatbot python=3.9
-  conda activate arxiv-chatbot
-```
-
-3. **Installer les dépendances**
-```bash
-  pip install -r requirements.txt
-```
-
-4. **Configurer l'environnement**
-```bash
-  cp .env.example .env
-  # Éditer le fichier .env avec vos paramètres
-```
-
-## Construction de l'Index Sémantique
-
-### Étape 1 : Extraction des Données
+1. **Clone the repository**
 
 ```bash
-  # Extraction automatique (recommandée)
-  python data/scripts/arxiv_extractor.py
-
-  # Ou extraction personnalisée
-  python data/scripts/arxiv_extractor.py \
-    --query "machine learning" \
-    --max_results 1000 \
-    --output data/data_source/ml_papers.json
+git clone https://github.com/ElazzouziHassan/scopus_chatbot.git
+cd scopus_chatbot
 ```
 
-### Étape 2 : Nettoyage des Données
+2. **Create a virtual environment**
 
 ```bash
-  # Nettoyage automatique
-  python data/scripts/data_cleaner.py --auto
+# With venv
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-  # Ou nettoyage personnalisé
-  python data/scripts/data_cleaner.py \
-    --input data/data_source/raw_data.json \
-    --output data/processed/clean_data.json \
-    --stats
+# Or with conda
+conda create -n arxiv-chatbot python=3.9
+conda activate arxiv-chatbot
 ```
 
-### Étape 3 : Génération de l'Index Sémantique
+3. **Install dependencies**
 
 ```bash
-  # Création automatique de l'index
-  python data/scripts/semantic_indexer.py --auto
-
-  # Ou création personnalisée
-  python data/scripts/semantic_indexer.py \
-    --input data/processed/clean_data.json \
-    --output data/search_index \
-    --model all-MiniLM-L6-v2 \
-    --test
+pip install -r requirements.txt
 ```
 
-**Modèles d'embeddings supportés :**
-- `all-MiniLM-L6-v2` : Rapide, bonne qualité (384 dimensions)
-- `all-mpnet-base-v2` : Meilleure qualité, plus lent (768 dimensions)
-- `all-roberta-large-v1` : Qualité optimale, très lent (1024 dimensions)
-
-## Lancement du Chatbot
-
-### Exécution Locale
+4. **Configure the environment**
 
 ```bash
-  # Lancer l'application principale
-  streamlit run app/beta_chatbot.py
-
-  # Ou la version professionnelle
-  streamlit run app/pro_chatbot.py
+cp .env.example .env
+# Edit the .env file with your settings
 ```
 
-### Comportement Attendu
+## Building the Semantic Index
 
-1. **Interface de Chat** : Interface conversationnelle avec historique des messages
-2. **Recherche Sémantique** : Recherche intelligente basée sur le sens des requêtes
-3. **Réponses Synthétisées** : Réponses détaillées combinant plusieurs sources
-4. **Résultats Détaillés** : Accès aux articles originaux avec scores de pertinence
-5. **Statistiques** : Visualisations interactives du dataset
+### Step 1: Data Extraction
 
-### Exemples de Requêtes
-
-```
-  "Qu'est-ce que l'apprentissage par renforcement ?"
-  "Dernières avancées en vision par ordinateur"
-  "Applications pratiques des transformers"
-  "Méthodes d'optimisation en deep learning"
-  "Recherches de Geoffrey Hinton sur les réseaux de neurones"
-```
-
-## Déploiement sur Streamlit Cloud
-
-### Étapes de Déploiement
-
-1. **Préparer le Repository**
 ```bash
-  # S'assurer que les fichiers essentiels sont présents
-  git add app/pro_chatbot.py requirements.txt README.md
-  git commit -m "Prêt pour le déploiement"
-  git push origin main
+# Automatic extraction (recommended)
+python data/scripts/arxiv_extractor.py
+
+# Or custom extraction
+python data/scripts/arxiv_extractor.py \
+  --query "machine learning" \
+  --max_results 1000 \
+  --output data/data_source/ml_papers.json
 ```
 
-2. **Configurer Streamlit Cloud**
-- Aller sur [share.streamlit.io](https://share.streamlit.io)
-- Connecter votre repository GitHub
-- Sélectionner `app/chatbot.py` comme fichier principal
-- Déployer l'application
+### Step 2: Data Cleaning
 
-3. **Variables d'Environnement**
+```bash
+# Automatic cleaning
+python data/scripts/data_cleaner.py --auto
+
+# Or custom cleaning
+python data/scripts/data_cleaner.py \
+  --input data/data_source/raw_data.json \
+  --output data/processed/clean_data.json \
+  --stats
+```
+
+### Step 3: Semantic Index Generation
+
+```bash
+# Automatic index creation
+python data/scripts/semantic_indexer.py --auto
+
+# Or custom index creation
+python data/scripts/semantic_indexer.py \
+  --input data/processed/clean_data.json \
+  --output data/search_index \
+  --model all-MiniLM-L6-v2 \
+  --test
+```
+
+**Supported embedding models:**
+
+- `all-MiniLM-L6-v2` — fast, good quality (384 dimensions)
+- `all-mpnet-base-v2` — better quality, slower (768 dimensions)
+- `all-roberta-large-v1` — best quality, very slow (1024 dimensions)
+
+## Running the Chatbot
+
+### Local Execution
+
+```bash
+# Launch the main application
+streamlit run app/beta_chatbot.py
+
+# Or the production version
+streamlit run app/pro_chatbot.py
+```
+
+### Expected Behavior
+
+1. **Chat Interface** — conversational interface with message history
+2. **Semantic Search** — intelligent search based on the meaning of queries
+3. **Synthesized Answers** — detailed responses combining multiple sources
+4. **Detailed Results** — access to original articles with relevance scores
+5. **Statistics** — interactive dataset visualizations
+
+### Example Queries
+
+```
+"What is reinforcement learning?"
+"Latest advances in computer vision"
+"Practical applications of transformers"
+"Optimization methods in deep learning"
+"Geoffrey Hinton's research on neural networks"
+```
+
+## Deployment on Streamlit Cloud
+
+### Deployment Steps
+
+1. **Prepare the repository**
+
+```bash
+# Make sure the essential files are present
+git add app/pro_chatbot.py requirements.txt README.md
+git commit -m "Ready for deployment"
+git push origin main
+```
+
+2. **Configure Streamlit Cloud**
+
+- Go to [share.streamlit.io](https://share.streamlit.io)
+- Connect your GitHub repository
+- Select `app/pro_chatbot.py` as the main file
+- Deploy the application
+
+3. **Environment Variables**
+
 ```toml
-  # Dans .streamlit/secrets.toml
-  [general]
-  ARXIV_API_RATE_LIMIT = 3
-  DEFAULT_MODEL = "all-MiniLM-L6-v2"
+# In .streamlit/secrets.toml
+[general]
+ARXIV_API_RATE_LIMIT = 3
+DEFAULT_MODEL = "all-MiniLM-L6-v2"
 ```
 
-### Application Déployée
-[Lien vers l'application déployée](https://votre-app.streamlit.app)
+## Testing and Validation
 
-## Tests et Validation
-
-### Tests de Performance
+### Performance Tests
 
 ```bash
-  # Test de l'extraction
-  python data/scripts/arxiv_extractor.py --query "test" --max_results 10
+# Test extraction
+python data/scripts/arxiv_extractor.py --query "test" --max_results 10
 
-  # Test de l'index sémantique
-  python data/scripts/semantic_indexer.py --test
+# Test the semantic index
+python data/scripts/semantic_indexer.py --test
 ```
 
-### Métriques de Validation
+### Validation Metrics
 
-- **Temps de Réponse** : < 2 secondes pour les requêtes standard
-- **Précision Sémantique** : Évaluée sur un ensemble de test de 100 requêtes
-- **Couverture** : Plus de 30,000 articles scientifiques indexés
-- **Satisfaction Utilisateur** : Interface intuitive et réponses pertinentes
+- **Response Time**: < 2 seconds for standard queries
+- **Semantic Precision**: evaluated on a test set of 100 queries
+- **Coverage**: over 30,000 scientific articles indexed
+- **User Satisfaction**: intuitive interface and relevant answers
 
-## Métriques de Performance
+## Performance Metrics
 
-| Métrique | Valeur | Description |
-|----------|--------|-------------|
-| **Articles Indexés** | 30,000+ | Nombre total d'articles dans la base |
-| **Temps de Recherche** | < 100ms | Temps moyen de recherche sémantique |
-| **Précision@10** | 85%+ | Pertinence des 10 premiers résultats |
-| **Couverture Temporelle** | 2010-2024 | Période couverte par les articles |
-| **Domaines** | 20+ | Nombre de domaines scientifiques |
+| Metric                 | Value      | Description                             |
+| ----------------------- | ---------- | ---------------------------------------- |
+| **Indexed Articles**    | 30,000+    | Total number of articles in the database |
+| **Search Time**         | < 100ms    | Average semantic search time             |
+| **Precision@10**        | 85%+       | Relevance of the top 10 results          |
+| **Time Coverage**       | 2010–2024  | Period covered by the articles           |
+| **Domains**             | 20+        | Number of scientific domains             |
 
-## Mise à Jour de l'Index
+## Updating the Index
 
-### Actualisation Complète
+### Full Refresh
 
 ```bash
-  # Pipeline complet de mise à jour
-  python data/scripts/arxiv_extractor.py --large_scale --target_size 2.0
-  python data/scripts/data_cleaner.py --auto
-  python data/scripts/semantic_indexer.py --auto
+# Complete update pipeline
+python data/scripts/arxiv_extractor.py --large_scale --target_size 2.0
+python data/scripts/data_cleaner.py --auto
+python data/scripts/semantic_indexer.py --auto
 ```
 
-### Actualisation Incrémentale
+### Incremental Update
 
 ```bash
-  # Ajouter de nouveaux articles
-  python data/scripts/arxiv_extractor.py \
-    --query "submittedDate:[20240101 TO 20241231]" \
-    --max_results 5000 \
-    --output data/data_source/new_papers.json
+# Add new articles
+python data/scripts/arxiv_extractor.py \
+  --query "submittedDate:[20240101 TO 20241231]" \
+  --max_results 5000 \
+  --output data/data_source/new_papers.json
 ```
 
-## Sécurité et Confidentialité
+## Security and Privacy
 
-### Gestion des Secrets
+### Secrets Management
 
-- **Variables d'environnement** : Utilisation de fichiers `.env` pour les configurations sensibles
-- **Streamlit Secrets** : Configuration sécurisée pour le déploiement cloud
-- **Données Publiques** : Utilisation exclusive de données publiques d'arXiv
+- **Environment variables**: `.env` files for sensitive configuration
+- **Streamlit Secrets**: secure configuration for cloud deployment
+- **Public Data**: uses exclusively public arXiv data
 
-### Bonnes Pratiques
+### Best Practices
 
-- Ne jamais commiter de clés API dans le repository
-- Utiliser des environnements virtuels isolés
-- Respecter les limites de taux de l'API arXiv (3 requêtes/seconde)
+- Never commit API keys to the repository
+- Use isolated virtual environments
+- Respect arXiv API rate limits (3 requests/second)
 
-## Dépannage
+## Troubleshooting
 
-### Erreurs Communes
+### Common Errors
 
-**1. Erreur d'importation de SemanticSearcher**
+**1. SemanticSearcher import error**
+
 ```bash
-  # Solution : Vérifier que l'index est construit
-  python data/scripts/semantic_indexer.py --auto
+# Solution: make sure the index has been built
+python data/scripts/semantic_indexer.py --auto
 ```
 
-**2. Fichiers trop volumineux pour GitHub**
+**2. Files too large for GitHub**
+
 ```bash
-  # Solution : Utiliser Git LFS ou exclure les gros fichiers
-  git rm --cached data/search_index/papers_data.json
-  echo "data/search_index/papers_data.json" >> .gitignore
+# Solution: use Git LFS or exclude large files
+git rm --cached data/search_index/papers_data.json
+echo "data/search_index/papers_data.json" >> .gitignore
 ```
 
-**3. Mémoire insuffisante**
+**3. Insufficient memory**
+
 ```bash
-  # Solution : Réduire la taille du batch ou utiliser un modèle plus petit
-  # Modifier batch_size=16 dans semantic_indexer.py
+# Solution: reduce batch size or use a smaller model
+# Set batch_size=16 in semantic_indexer.py
 ```
 
-**4. Erreur de connexion à l'API arXiv**
+**4. arXiv API connection error**
+
 ```bash
-  # Solution : Vérifier la connexion internet et respecter les limites de taux
-  # Attendre 3 secondes entre les requêtes
+# Solution: check your internet connection and respect rate limits
+# Wait 3 seconds between requests
 ```
 
-## Travaux Futurs / Feuille de Route
+## Future Work / Roadmap
 
-### Améliorations Prévues
+### Planned Improvements
 
-- [ ] **Intégration Multi-Sources** : Ajout de PubMed, IEEE Xplore
-- [ ] **Recherche Multimodale** : Support des images et graphiques
-- [ ] **Personnalisation** : Profils utilisateur et recommandations
-- [ ] **API REST** : Interface programmatique pour développeurs
-- [ ] **Analyse de Citations** : Graphe de citations et impact des articles
-- [ ] **Support Multilingue** : Interface en plusieurs langues
-- [ ] **Collaboration** : Partage de collections et annotations
+- [ ] **Multi-Source Integration**: add PubMed, IEEE Xplore
+- [ ] **Multimodal Search**: support for images and figures
+- [ ] **Personalization**: user profiles and recommendations
+- [ ] **REST API**: programmatic interface for developers
+- [ ] **Citation Analysis**: citation graph and article impact
+- [ ] **Multilingual Support**: interface in multiple languages
+- [ ] **Collaboration**: shared collections and annotations
 
-### Cas d'Usage Potentiels
+### Potential Use Cases
 
-- **Recherche Académique** : Aide à la revue de littérature
-- **Veille Technologique** : Suivi des dernières innovations
-- **Éducation** : Support pédagogique pour étudiants
-- **R&D Industrielle** : Exploration de nouvelles technologies
+- **Academic Research**: literature review assistance
+- **Technology Watch**: tracking the latest innovations
+- **Education**: teaching support for students
+- **Industrial R&D**: exploring new technologies
 
-## Contributeurs
+## Contributors
 
-### Équipe Principale
+### Core Team
 
-- **Groupe 2IAD (H. Elazzouzi, K. Ettalbi & O. Rochdi)** 
-  - Développeurs Principal
-  - Architecture du système
-  - Implémentation des algorithmes de recherche
-  - Interface utilisateur Streamlit
+- **Group 2IAD (H. El Azzouzi, K. Ettalbi & O. Rochdi)**
+  - Lead developers
+  - System architecture
+  - Search algorithm implementation
+  - Streamlit user interface
 
-### Contributions Bienvenues
+### Contributions Welcome
 
-Nous accueillons les contributions de la communauté ! Voici comment contribuer :
+Community contributions are welcome! Here's how to contribute:
 
-1. **Fork** le repository
-2. **Créer** une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. **Commiter** vos changements (`git commit -am 'Ajout nouvelle fonctionnalité'`)
-4. **Pousser** vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
-5. **Créer** une Pull Request
+1. **Fork** the repository
+2. **Create** a branch for your feature (`git checkout -b feature/new-feature`)
+3. **Commit** your changes (`git commit -am 'Add new feature'`)
+4. **Push** to the branch (`git push origin feature/new-feature`)
+5. **Open** a Pull Request
 
-### Types de Contributions Recherchées
+### Types of Contributions Wanted
 
-- 🐛 Correction de bugs
-- ✨ Nouvelles fonctionnalités
-- 📚 Amélioration de la documentation
-- 🧪 Tests et validation
-- 🌐 Traductions
-- 🎨 Améliorations de l'interface
+- 🐛 Bug fixes
+- ✨ New features
+- 📚 Documentation improvements
+- 🧪 Tests and validation
+- 🌐 Translations
+- 🎨 UI improvements
 
-## Licence
+## Citation
 
-Ce projet est sous licence **MIT License**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+If you use this project or refer to it in your own work, please cite the associated paper:
+
+> El Azzouzi, H., Ettalbi, K., & Rochdi, O. (2026). *Development of an Intelligent Conversational Assistant for Semantic Exploration of Scientific Articles*. Zenodo. https://doi.org/10.5281/zenodo.22033431
+
+BibTeX:
+
+```bibtex
+@misc{elazzouzi2026scopuschatbot,
+  author       = {El Azzouzi, Hassan and Ettalbi, Kabira and Rochdi, Oumayma},
+  title        = {Development of an Intelligent Conversational Assistant for Semantic Exploration of Scientific Articles},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.22033431},
+  url          = {https://doi.org/10.5281/zenodo.22033431}
+}
+```
+
+See also [`CITATION.cff`](./CITATION.cff), which GitHub uses to generate a "Cite this repository" button automatically.
+
+## License
+
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/ElazzouziHassan/scopus_chatbot/blob/main/LICENSE) file for details.
 
 ```
 MIT License
@@ -362,51 +397,51 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 ```
 
-## Références et Remerciements
+## References and Acknowledgments
 
-### Technologies Utilisées
+### Technologies Used
 
-- **[arXiv API](https://arxiv.org/help/api)** - Source des données scientifiques
-- **[Sentence Transformers](https://www.sbert.net/)** - Génération d'embeddings sémantiques
-- **[FAISS](https://faiss.ai/)** - Indexation et recherche vectorielle rapide
-- **[Streamlit](https://streamlit.io/)** - Framework d'interface web
-- **[Plotly](https://plotly.com/)** - Visualisations interactives
-- **[Pandas](https://pandas.pydata.org/)** - Manipulation de données
+- **[arXiv API](https://arxiv.org/help/api)** — source of scientific data
+- **[Sentence Transformers](https://www.sbert.net/)** — semantic embedding generation
+- **[FAISS](https://faiss.ai/)** — fast vector indexing and search
+- **[Streamlit](https://streamlit.io/)** — web interface framework
+- **[Plotly](https://plotly.com/)** — interactive visualizations
+- **[Pandas](https://pandas.pydata.org/)** — data manipulation
 
-### Bibliographie Scientifique
+### Scientific Bibliography
 
 1. Reimers, N., & Gurevych, I. (2019). Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. *EMNLP 2019*.
 2. Johnson, J., Douze, M., & Jégou, H. (2019). Billion-scale similarity search with GPUs. *IEEE Transactions on Big Data*.
 3. Karpukhin, V., et al. (2020). Dense Passage Retrieval for Open-Domain Question Answering. *EMNLP 2020*.
 
-### Remerciements Spéciaux
+### Special Thanks
 
-- **arXiv.org** pour l'accès libre aux publications scientifiques
-- **Hugging Face** pour les modèles de transformers pré-entraînés
-- **La communauté open-source** pour les outils et bibliothèques utilisés
+- **arXiv.org** for open access to scientific publications
+- **Hugging Face** for pretrained transformer models
+- **The open-source community** for the tools and libraries used
 
 ---
 
-## Démarrage Rapide
+## Quick Start
 
 ```bash
-  # Installation rapide
-  git clone https://github.com/ElazzouziHassan/scopus_chatbot.git
-  cd scopus_chatbot
-  python -m venv venv && source venv/bin/activate
-  pip install -r requirements.txt
+# Quick installation
+git clone https://github.com/ElazzouziHassan/scopus_chatbot.git
+cd scopus_chatbot
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
 
-  # Construction de l'index (peut prendre 30-60 minutes)
-  python data/scripts/arxiv_extractor.py
-  python data/scripts/data_cleaner.py --auto
-  python data/scripts/semantic_indexer.py --auto
+# Build the index (may take 30-60 minutes)
+python data/scripts/arxiv_extractor.py
+python data/scripts/data_cleaner.py --auto
+python data/scripts/semantic_indexer.py --auto
 
-  # Lancement de l'application
-  streamlit run app/pro_chatbot.py
+# Launch the application
+streamlit run app/pro_chatbot.py
 ```
 
-** Votre chatbot de recherche sémantique arXiv est maintenant prêt ! 🎉**
+**Your arXiv semantic search chatbot is now ready! 🎉**
 
 ---
 
-*Pour toute question ou support, n'hésitez pas à ouvrir une issue sur GitHub ou à nous contacter directement.*
+*For questions or support, feel free to open an issue on GitHub or reach out directly.*
